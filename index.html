@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Search for repositories</title>
+</head>
+<body>
+
+<script>
+    let inputValue = 'react';
+    fetch(`https://api.github.com/search/repositories?q=${inputValue}&per_page=5`)
+        .then(response => response.json())
+        .then(data => console.log(data.items));
+
+</script>
+
+
+</body>
+</html>
