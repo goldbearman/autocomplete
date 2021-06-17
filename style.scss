@@ -1,0 +1,43 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #E5E5E5;
+  font-family: Arials, Tahoma;
+
+  .window {
+    margin: 50px auto;
+    padding: 77px;
+    width: 660px;
+    height: 763px;
+    background: #C4C4C4;
+
+    &__input{
+      display: block;
+      width: 100%;
+
+      font-family: inherit;
+      font-size: 15px;
+      padding: 5px;
+      border: 1px solid black
+
+    }
+
+    &__searchUnit{
+      width: 100%;
+    }
+
+
+
+
+
+
+
+
+  }
+
+
+}
