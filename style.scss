@@ -15,12 +15,8 @@ body {
     height: 763px;
     background: #C4C4C4;
 
-
     .drop-down_menu {
-
       height: 350px;
-
-
       &__input {
         display: block;
         width: 100%;
@@ -30,7 +26,6 @@ body {
         font-size: 48px;
         padding: 5px;
         border: 1px solid black
-
       }
 
       &__searchUnit {
@@ -49,7 +44,6 @@ body {
     }
 
     .description_element {
-
       overflow: auto;
       height: 300px;
 
@@ -60,12 +54,10 @@ body {
         position: relative;
         border: 1px solid black;
         display: none;
-
         p{
           margin: 0;
           max-width: 400px;
         }
-
         .close-button {
           background: url("image/close.svg") no-repeat ;
           width: 50px;
@@ -80,9 +72,5 @@ body {
         }
       }
     }
-
-
   }
-
-
 }

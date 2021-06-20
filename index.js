@@ -9,17 +9,13 @@ const debounce = (fn, debounceTime) => {
     return function () {
         const fnCall = () => {
             fn.apply(this, arguments)
-        }
+        };
         clearTimeout(timeOut);
         timeOut = setTimeout(fnCall, debounceTime);
     }
 };
 
-
 inputValue.addEventListener('keyup', debounce(networkRequest,500) );
-
-
-
 
 function networkRequest() {
     if (inputValue.value.trim() !== "") {
@@ -35,13 +31,11 @@ function networkRequest() {
             .then(data => {
                 console.log("dat")
                 if (data !== undefined) {
-
                     createItem(data.items);
                 }
                 ;
             });
     } else searchUnits.remove();
-
 }
 
 function createItem(arrItems) {
