@@ -15,21 +15,16 @@ const debounce = (fn, debounceTime) => {
     }
 };
 
-inputValue.addEventListener('keyup', debounce(networkRequest,500) );
-
-function networkRequest() {
+let linkNetWorkRequest = function networkRequest() {
     if (inputValue.value.trim() !== "") {
-        console.log(inputValue.value + "  first");
         fetch(`https://api.github.com/search/repositories?q=${inputValue.value}&per_page=5&sort=stars`)
             .then(response => {
-                    console.log("resp")
                     if (response.ok) {
                         return response.json();
                     }
                 }
             )
             .then(data => {
-                console.log("dat")
                 if (data !== undefined) {
                     createItem(data.items);
                 }
@@ -37,6 +32,8 @@ function networkRequest() {
             });
     } else searchUnits.remove();
 }
+
+inputValue.addEventListener('input', debounce(linkNetWorkRequest,500) );
 
 function createItem(arrItems) {
     if (searchUnits !== undefined) {
@@ -68,9 +65,15 @@ function createDescription(objectItem) {
     name.innerHTML = `Name: ${objectItem.name} <br>
     Owner: ${objectItem.owner.login} <br>
     Stars: ${objectItem.stargazers_count}`;
-    button.addEventListener('click', () => item.remove());
+    function itemRemove() {
+        item.remove();
+        button.removeEventListener('click', itemRemove);
+    }
+    button.addEventListener('click', itemRemove);
     description_element.prepend(item);
 }
+
+
 
 
 
