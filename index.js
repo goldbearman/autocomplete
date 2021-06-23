@@ -1,7 +1,6 @@
 let inputValue = document.querySelector('.drop-down_menu__input');
-let description_element = document.querySelector('.description_element');
+let myWindow = document.querySelector('.window');
 let description_element__item = document.querySelector('.description_element__item');
-let button_close = document.querySelector('.close-button');
 let searchUnits;
 
 const debounce = (fn, debounceTime) => {
@@ -14,6 +13,8 @@ const debounce = (fn, debounceTime) => {
         timeOut = setTimeout(fnCall, debounceTime);
     }
 };
+
+let description_element = creatorAppendElement('div','description_element',myWindow);
 
 let linkNetWorkRequest = function networkRequest() {
     if (inputValue.value.trim() !== "") {
@@ -41,7 +42,6 @@ function createItem(arrItems) {
     }
     if (arrItems !== undefined) {
         searchUnits = document.createElement('div');
-
         arrItems.forEach(item => {
             let searchUnit = document.createElement('div');
             searchUnit.classList.add('drop-down_menu__searchUnit');
@@ -58,19 +58,26 @@ function createDescription(objectItem) {
     if (searchUnits !== undefined) {
         searchUnits.remove();
     }
-    let item = description_element__item.cloneNode(true);
-    item.style.display = 'block';
-    let name = item.querySelector('p');
-    let button = item.querySelector('button');
-    name.innerHTML = `Name: ${objectItem.name} <br>
-    Owner: ${objectItem.owner.login} <br>
-    Stars: ${objectItem.stargazers_count}`;
+    let descriptionElementItem = creatorAppendElement('div','description_element__item',description_element);
+    let p1 = creatorAppendElement('p','p',descriptionElementItem,`Name: ${objectItem.name}`);
+    let p2 = creatorAppendElement('p','p',descriptionElementItem,`Name: ${objectItem.owner.login}`);
+    let p3 = creatorAppendElement('p','p',descriptionElementItem,`Name: ${objectItem.stargazers_count}`);
+    let button = creatorAppendElement('button','close-button',descriptionElementItem);
+
     function itemRemove() {
-        item.remove();
+        descriptionElementItem.remove();
         button.removeEventListener('click', itemRemove);
     }
     button.addEventListener('click', itemRemove);
-    description_element.prepend(item);
+    description_element.prepend(descriptionElementItem);
+}
+
+function creatorAppendElement(typeElement,elementClass,whereInsert,content) {
+    let item = document.createElement(typeElement);
+    item.classList.add(elementClass);
+    whereInsert.append(item);
+    if(content) item.innerHTML = content;
+    return item;
 }
 
 
