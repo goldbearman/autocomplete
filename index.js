@@ -31,7 +31,7 @@ let linkNetWorkRequest = function networkRequest() {
                 }
                 ;
             });
-    } else searchUnits.remove();
+    }
 }
 
 inputValue.addEventListener('input', debounce(linkNetWorkRequest,500) );
